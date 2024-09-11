@@ -8,13 +8,13 @@ let
   quartz-src = fetchFromGitHub {
     owner = "jackyzha0";
     repo = "quartz";
-    rev = "v4";
-    hash = "sha256-GUlN/VPrRv7tVtwZClhaTteiLn1DjdIFAAeeidwv6oE=";
+    rev = "v4.3.1";
+    hash = "sha256-kID0R/n3ij5uvZ/CXjiLa3oqjghX2U4Zu82huejG6/Q=";
   };
 in
 buildNpmPackage {
   name = "quartz";
-  npmDepsHash = "sha256-1G0bT1l/Itmkr9rbTnO3pyoUG/R6WCnjAsP4vnlxij8=";
+  npmDepsHash = "sha256-qgAzMTtFTShj3xUut73DBCbkt7yTwVjthL8hEgRFdIo=";
   src = quartz-src;
   dontNpmBuild = true;
 
