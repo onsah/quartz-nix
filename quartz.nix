@@ -32,7 +32,7 @@ stdenv.mkDerivation {
   name = "quartz-notes";
   buildInputs = [ quartz-derivation ];
   src = fileset.toSource {
-    root = dirOf content;
+    root = /. + (dirOf content);
     fileset = content;
   };
   installPhase = ''
