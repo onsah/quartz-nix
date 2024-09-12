@@ -2,12 +2,11 @@
   buildNpmPackage,
   fetchFromGitHub,
   stdenv,
-  lib,
+  # Must be `SourceLike`
   content,
 } :
 
 let
-  fileset = lib.fileset;
   quartz-src = fetchFromGitHub {
     owner = "jackyzha0";
     repo = "quartz";
@@ -31,10 +30,7 @@ in
 stdenv.mkDerivation {
   name = "quartz-notes";
   buildInputs = [ quartz-derivation ];
-  src = fileset.toSource {
-    root = /. + (dirOf content);
-    fileset = content;
-  };
+  src = content;
   installPhase = ''
     mkdir $out
     # We need write permission for lib because
@@ -44,7 +40,7 @@ stdenv.mkDerivation {
 
     # quartz depends on it's build files to be in the current diretory
     cd $out/lib/node_modules/@jackyzha0/quartz
-    ${quartz-derivation}/bin/quartz build --directory /build/source/content --output $out/public
+    ${quartz-derivation}/bin/quartz build --directory /build/source --output $out/public
     rm -rf $out/lib
   '';
 }
