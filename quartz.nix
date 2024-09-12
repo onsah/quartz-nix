@@ -25,7 +25,6 @@ let
       npmInstallHook
       cd $out/lib/node_modules/@jackyzha0/quartz
       $out/bin/quartz build
-      ls -la $out/lib/node_modules/@jackyzha0/quartz/quartz/
     '';
   };
 in
@@ -45,7 +44,7 @@ stdenv.mkDerivation {
 
     # quartz depends on it's build files to be in the current diretory
     cd $out/lib/node_modules/@jackyzha0/quartz
-    ${quartz-derivation}/bin/quartz build --directory ${content} --output $out/public
+    ${quartz-derivation}/bin/quartz build --directory /build/source/content --output $out/public
     rm -rf $out/lib
   '';
 }
